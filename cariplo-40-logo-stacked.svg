@@ -1,0 +1,16 @@
+<svg viewBox="0 0 360 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cariplo 40">
+  <title>Cariplo 40 — stacked lockup</title>
+
+  <!--
+    Stacked lockup for square / compact placements.
+    Same font, colours and construction logic as the horizontal version.
+      Orange #EE7203 — wordmark
+      Blue   #003DA5 — anniversary number
+  -->
+
+  <g font-family="'Futura', 'Futura PT', 'Century Gothic', 'Avenir Next', Avenir, 'Trebuchet MS', sans-serif"
+     font-weight="600" text-anchor="middle">
+    <text x="180" y="80"  font-size="66"  letter-spacing="-0.5" fill="#EE7203">CARIPLO</text>
+    <text x="180" y="213" font-size="150" fill="#003DA5">40</text>
+  </g>
+</svg>

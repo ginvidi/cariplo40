@@ -1,0 +1,19 @@
+<svg viewBox="0 0 674 176" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cariplo 40">
+  <title>Cariplo 40 — horizontal lockup</title>
+
+  <!--
+    Refined horizontal lockup.
+    Design font: Futura Medium  (for production, convert text to outlines).
+    Fallback stack keeps a geometric-sans feel where Futura is unavailable.
+    The wordmark/number gap is set in em, so the lockup keeps its
+    proportions across fonts and sizes.
+      Orange #EE7203 — wordmark
+      Blue   #003DA5 — anniversary number
+  -->
+
+  <text x="24" y="126"
+        font-family="'Futura', 'Futura PT', 'Century Gothic', 'Avenir Next', Avenir, 'Trebuchet MS', sans-serif"
+        font-size="100" font-weight="600">
+    <tspan fill="#EE7203" letter-spacing="-1">CARIPLO</tspan><tspan fill="#003DA5" dx="0.30em">40</tspan>
+  </text>
+</svg>

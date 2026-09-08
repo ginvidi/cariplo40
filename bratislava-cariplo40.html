@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bratislava · Cariplo 40</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='52' fill='%23ffffff'/%3E%3Cg font-family='Futura,%22Trebuchet MS%22,Arial,sans-serif' font-weight='700' text-anchor='middle'%3E%3Ctext x='128' y='92' font-size='50' letter-spacing='-2' fill='%23EE7203'%3ECARIPLO%3C/text%3E%3Ctext x='128' y='214' font-size='150' fill='%23003DA5'%3E40%3C/text%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<style>
+  :root{
+    --ground:#f1f4f6;
+    --surface:#ffffff;
+    --surface-2:#eaeff2;
+    --ink:#1a2531;
+    --muted:#5a6976;
+    --primary:#12586f;
+    --primary-tint:#e2edf0;
+    --accent:#bd4630;
+    --accent-tint:#f6e6e1;
+    --gold:#b17f2c;
+    --gold-tint:#f3ead7;
+    --line:#d5dde2;
+    --focus:#12586f;
+    --brand-gold:#d48b49;
+    --c40:#b06d1f;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0f161c;
+      --surface:#18222b;
+      --surface-2:#1f2b34;
+      --ink:#e7ecf0;
+      --muted:#9aa8b4;
+      --primary:#57b7d2;
+      --primary-tint:#16303a;
+      --accent:#e2704f;
+      --accent-tint:#32211c;
+      --gold:#ddaa62;
+      --gold-tint:#2d2717;
+      --line:#29343d;
+      --focus:#57b7d2;
+      --brand-gold:#e0a85c;
+      --c40:#e2ab63;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0f161c;
+    --surface:#18222b;
+    --surface-2:#1f2b34;
+    --ink:#e7ecf0;
+    --muted:#9aa8b4;
+    --primary:#57b7d2;
+    --primary-tint:#16303a;
+    --accent:#e2704f;
+    --accent-tint:#32211c;
+    --gold:#ddaa62;
+    --gold-tint:#2d2717;
+    --line:#29343d;
+    --focus:#57b7d2;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,"Times New Roman",serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-underline-offset:2px}
+  :focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px}
+
+  .shell{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+
+  /* ---------- header ---------- */
+  header.top{
+    flex:none;
+    display:flex;
+    align-items:center;
+    gap:1.25rem;
+    padding:.95rem 1.6rem;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{height:46px;width:auto;flex:none;display:block}
+  .top .titles{
+    display:flex;flex-direction:column;gap:.1rem;
+    border-left:1px solid var(--line);
+    padding-left:1.25rem;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+    font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+  }
+  .top h1{
+    font-family:"Bricolage Grotesque","Newsreader",sans-serif;
+    font-weight:700;font-size:1.15rem;margin:0;letter-spacing:-.01em;
+    text-wrap:balance;
+  }
+  /* "Cariplo 40" reso come logo, ovunque compaia nel testo e nell'header */
+  .c40-logo{
+    height:.95em;width:auto;
+    vertical-align:-0.04em;
+    margin:0 .06em;
+  }
+  h1 .c40-logo{height:1em;vertical-align:-0.06em}
+  .cariplo-mark .cm-w{fill:#EE7203}
+  .cariplo-mark .cm-n{fill:#003DA5}
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]) .cariplo-mark .cm-w{fill:#e6a961}
+    :root:not([data-theme="light"]) .cariplo-mark .cm-n{fill:#5aa9d6}
+  }
+  :root[data-theme="dark"] .cariplo-mark .cm-w{fill:#e6a961}
+  :root[data-theme="dark"] .cariplo-mark .cm-n{fill:#5aa9d6}
+  .brand{display:inline-flex;align-items:center;gap:.1rem;flex:none}
+  .top .meta{
+    margin-left:auto;text-align:right;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.68rem;line-height:1.7;color:var(--muted);
+  }
+
+  /* ---------- two panes ---------- */
+  .panes{
+    flex:1;min-height:0;
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  .pane{overflow-y:auto;scrollbar-gutter:stable}
+  .pane + .pane{border-left:1px solid var(--line)}
+  .pane-inner{max-width:44rem;margin:0 auto;padding:2.1rem 1.7rem 4.5rem}
+
+  /* ---------- itinerary (left) ---------- */
+  .lede{margin:0 0 1.4rem;color:var(--muted);font-size:1.02rem}
+  .legend{
+    display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
+    margin:0 0 2rem;padding-bottom:1.4rem;border-bottom:1px solid var(--line);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  }
+
+  .timeline{
+    border-left:2px solid var(--line);
+    padding-left:1.7rem;margin-left:.35rem;
+    display:flex;flex-direction:column;gap:2.4rem;
+  }
+  .day{position:relative}
+  .day-label{
+    display:block;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+  }
+  .day-label::before{
+    content:"";position:absolute;
+    left:calc(-1.7rem - 1px - 6px);top:.1rem;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 0 4px var(--ground);
+  }
+  .day-title{
+    font-family:"Bricolage Grotesque","Newsreader",sans-serif;
+    font-weight:700;font-size:1.55rem;letter-spacing:-.015em;
+    margin:.15rem 0 0;text-wrap:balance;
+  }
+  .phase{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--primary);font-weight:600;margin-top:1.3rem;
+  }
+  .stop{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--primary);
+    border-radius:11px;
+    padding:1rem 1.15rem 1.1rem;
+    margin-top:.75rem;
+  }
+  .stop.accent{border-left-color:var(--accent)}
+  .stop h3{
+    font-family:"Bricolage Grotesque","Newsreader",sans-serif;
+    font-weight:600;font-size:1.08rem;margin:0;letter-spacing:-.01em;
+  }
+  .stop ul{margin:.55rem 0 0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.3rem}
+  .stop li{font-size:.98rem}
+
+  .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+  .chip{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.68rem;letter-spacing:.02em;
+    padding:.22rem .55rem;border-radius:999px;
+    background:var(--primary-tint);color:var(--primary);
+    white-space:nowrap;
+  }
+  .chip.cost{background:var(--gold-tint);color:var(--gold)}
+
+  .note-card{
+    margin-top:2.6rem;
+    background:var(--primary-tint);
+    border-radius:13px;
+    padding:1.25rem 1.35rem;
+  }
+  .note-card + .note-card{margin-top:1.1rem}
+  .note-card h3{
+    font-family:"Bricolage Grotesque","Newsreader",sans-serif;
+    font-weight:700;font-size:1.12rem;margin:0 0 .55rem;color:var(--primary);
+  }
+  .note-card ul{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.35rem}
+  .note-card li{font-size:.97rem}
+  .bon-voyage{
+    margin:1.6rem 0 0;font-size:1.05rem;font-style:italic;color:var(--muted);
+  }
+
+  /* ---------- guide (right) ---------- */
+  .macro{margin-bottom:2.8rem}
+  .macro:last-child{margin-bottom:0}
+  .macro:not([open]){margin-bottom:1rem}
+  .macro-head{
+    list-style:none;cursor:pointer;
+    position:sticky;top:0;z-index:3;
+    background:var(--ground);
+    display:flex;align-items:flex-end;gap:1rem;
+    padding:.85rem 2.2rem .85rem 0;margin-bottom:1.1rem;
+    border-bottom:2px solid var(--accent);
+  }
+  .macro-head::-webkit-details-marker{display:none}
+  .macro:not([open]) > .macro-head{margin-bottom:0}
+  .macro-mk{
+    position:absolute;right:0;bottom:.8rem;
+    width:1.4rem;height:1.4rem;
+    display:grid;place-items:center;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:1.35rem;line-height:1;color:var(--accent);
+  }
+  .macro.kids .macro-mk{color:var(--gold)}
+  .macro-mk::after{content:"+"}
+  .macro[open] > .macro-head .macro-mk::after{content:"\2013"}
+  .macro-body{padding-top:.15rem}
+  .macro.kids .macro-head{border-bottom-color:var(--gold)}
+  .macro-head h2{
+    font-family:"Bricolage Grotesque","Newsreader",sans-serif;
+    font-weight:700;font-size:1.4rem;margin:0;letter-spacing:-.02em;
+    text-wrap:balance;
+  }
+  .macro .sub{
+    display:block;margin-top:.2rem;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  details.acc{
+    border:1px solid var(--line);
+    border-radius:11px;
+    background:var(--surface);
+    margin-bottom:.6rem;
+    overflow:hidden;
+  }
+  details.acc > summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.9rem 1.05rem;
+    font-family:"Bricolage Grotesque","Newsreader",sans-serif;
+    font-weight:600;font-size:1.01rem;letter-spacing:-.005em;
+  }
+  details.acc > summary::-webkit-details-marker{display:none}
+  .mk{
+    flex:none;width:1.15rem;height:1.15rem;
+    display:grid;place-items:center;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:1rem;
+    color:var(--muted);
+  }
+  .mk::after{content:"+"}
+  details.acc[open] > summary{color:var(--accent);border-bottom:1px solid var(--line)}
+  details.acc[open] > summary .mk{color:var(--accent)}
+  details.acc[open] > summary .mk::after{content:"\2013"}
+  .macro.kids details.acc[open] > summary{color:var(--gold)}
+  .macro.kids details.acc[open] > summary .mk{color:var(--gold)}
+
+  .acc-body{padding:.95rem 1.05rem 1.15rem}
+  .acc-body > * + *{margin-top:.85rem}
+
+  .item h4{
+    font-family:"Bricolage Grotesque","Newsreader",sans-serif;
+    font-weight:600;font-size:.98rem;margin:0 0 .18rem;letter-spacing:-.005em;
+  }
+  .item p{margin:0;color:var(--muted);font-size:.94rem}
+  .item .chips{margin-top:.5rem}
+
+  ul.plain{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.38rem}
+  ul.plain li{font-size:.95rem}
+  ul.plain li span.k{color:var(--muted)}
+
+  .tip{
+    margin:0;padding:.8rem .95rem;
+    background:var(--gold-tint);border-radius:9px;
+    font-size:.93rem;
+  }
+  .macro:not(.kids) .tip{background:var(--primary-tint)}
+
+  @media (prefers-reduced-motion:no-preference){
+    details.acc[open] .acc-body{animation:accIn .18s ease-out}
+    .macro[open] > .macro-body{animation:accIn .2s ease-out}
+    .tabpanel-anim{animation:accIn .2s ease-out}
+    @keyframes accIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  }
+
+  /* barra delle schede: nascosta su desktop */
+  .tabbar{display:none}
+
+  /* ---------- responsive ---------- */
+  @media screen and (max-width:920px){
+    .shell{display:block;height:auto;overflow:visible}
+    header.top{position:static;flex-wrap:wrap}
+    .top .meta{width:100%;margin:.4rem 0 0;text-align:left}
+
+    /* schede: i bottoni restano sempre in alto */
+    .tabbar{
+      display:flex;gap:.35rem;
+      position:sticky;top:0;z-index:20;
+      padding:.5rem .7rem;
+      background:var(--surface);
+      border-bottom:1px solid var(--line);
+      overflow-x:auto;scrollbar-width:none;
+    }
+    .tabbar::-webkit-scrollbar{display:none}
+    .tab-btn{
+      flex:1 1 0;min-width:0;cursor:pointer;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;
+      font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+      font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;
+      padding:.55rem .5rem;border-radius:999px;
+      border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    }
+    .tab-btn.is-active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+    .panes{display:block}
+    .pane{overflow:visible}
+    .pane + .pane{border-left:none;border-top:none}
+    .pane-inner{padding:1.6rem 1.2rem 3rem}
+
+    /* una scheda visibile per volta */
+    .panes[data-tab="itinerario"] > .pane + .pane{display:none}
+    .panes:not([data-tab="itinerario"]) > .pane:first-child{display:none}
+    .panes[data-tab="piccoli"] .macro:not(.kids){display:none}
+    .panes[data-tab="colti"]  .macro.kids{display:none}
+
+    /* dentro le schede le sezioni sono sempre aperte; il +/- non serve */
+    .macro{margin-bottom:0}
+    .macro > .macro-body{display:block !important}
+    .macro-mk{display:none}
+    .macro-head{top:44px;margin-bottom:1.1rem !important;cursor:default}
+  }
+  @media screen and (max-width:520px){
+    body{font-size:16px}
+    .top .titles{border-left:none;padding-left:0}
+    .macro-head{flex-direction:column;align-items:flex-start}
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    .shell{height:auto;overflow:visible}
+    .panes{grid-template-columns:1fr}
+    .pane{overflow:visible}
+    .pane + .pane{border-left:none}
+    .mk,.macro-mk,.tabbar{display:none}
+    .macro-head{position:static}
+    .macro-body{display:block !important}
+    details.acc{break-inside:avoid}
+    details.acc > .acc-body{display:block !important}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="top">
+    <svg class="logo cariplo-mark" viewBox="0 0 360 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cariplo 40">
+      <g font-family="'Futura','Futura PT','Century Gothic','Avenir Next',Avenir,'Trebuchet MS',sans-serif" font-weight="600" text-anchor="middle">
+        <text class="cm-w" x="180" y="80"  font-size="66"  letter-spacing="-0.5">CARIPLO</text>
+        <text class="cm-n" x="180" y="213" font-size="150">40</text>
+      </g>
+    </svg>
+    <div class="titles">
+      <span class="eyebrow">Itinerario provvisorio</span>
+      <h1>Un fine settimana a Bratislava &mdash; <svg class="c40-logo cariplo-mark" viewBox="0 0 638 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cariplo 40"><text x="6" y="106" font-family="'Futura','Futura PT','Century Gothic','Avenir Next',Avenir,'Trebuchet MS',sans-serif" font-size="100" font-weight="600"><tspan class="cm-w" letter-spacing="-1">CARIPLO</tspan><tspan class="cm-n" dx="0.30em">40</tspan></text></svg></h1>
+    </div>
+    <div class="meta">
+      Fuso CET &middot; Moneta EUR<br>
+      A piedi nel centro &middot; bus / taxi in periferia
+    </div>
+  </header>
+
+  <nav class="tabbar" aria-label="Sezioni">
+    <button type="button" class="tab-btn is-active" data-tab="itinerario" aria-selected="true">Itinerario</button>
+    <button type="button" class="tab-btn" data-tab="piccoli" aria-selected="false">Pi&ugrave; piccoli</button>
+    <button type="button" class="tab-btn" data-tab="colti" aria-selected="false">Pi&ugrave; colti</button>
+  </nav>
+
+  <div class="panes" data-tab="itinerario">
+
+    <!-- ================= LEFT: ITINERARIO ================= -->
+    <section class="pane" aria-label="Itinerario del fine settimana">
+      <div class="pane-inner">
+
+        <p class="lede">Bozza di programma per il gruppo <svg class="c40-logo cariplo-mark" viewBox="0 0 638 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cariplo 40"><text x="6" y="106" font-family="'Futura','Futura PT','Century Gothic','Avenir Next',Avenir,'Trebuchet MS',sans-serif" font-size="100" font-weight="600"><tspan class="cm-w" letter-spacing="-1">CARIPLO</tspan><tspan class="cm-n" dx="0.30em">40</tspan></text></svg>: pensata per stare insieme &mdash; famiglie con bambini e adulti &mdash; con momenti condivisi e, nella colonna a fianco, due sezioni per chi vuole di pi&ugrave;.</p>
+
+        <div class="legend">
+          <span class="chip">durata</span>
+          <span class="chip cost">&euro; costo</span>
+          <span>&nbsp;i cartellini indicano tempo e spesa indicativi</span>
+        </div>
+
+        <div class="timeline">
+
+          <!-- VENERDI -->
+          <div class="day">
+            <span class="day-label">Venerd&igrave; &middot; sera</span>
+            <h2 class="day-title">Arrivo</h2>
+
+            <div class="stop accent">
+              <h3>Cena insieme nel centro storico &mdash; Star&aacute; Mestnos&#357;</h3>
+              <ul>
+                <li>Locali accoglienti per tutti, atmosfera medievale</li>
+                <li>Men&ugrave; vari: piatti semplici per i bambini, buona cucina per gli adulti</li>
+                <li>Consigliati <strong>Marinaledus</strong> o <strong>U Flori&aacute;na</strong> &mdash; family-friendly ma con una buona carta dei vini</li>
+              </ul>
+              <div class="chips"><span class="chip">serata</span></div>
+            </div>
+          </div>
+
+          <!-- SABATO -->
+          <div class="day">
+            <span class="day-label">Sabato</span>
+            <h2 class="day-title">La giornata piena</h2>
+
+            <p class="phase">Mattina &middot; attivit&agrave; insieme</p>
+            <div class="stop">
+              <h3>Castello di Bratislava &mdash; Bratislavsk&yacute; hrad</h3>
+              <ul>
+                <li>Visita della fortezza e del museo storico</li>
+                <li>Bambini: facile da esplorare, prati aperti per correre</li>
+                <li>Adulti: vista panoramica sul Danubio, storia interessante</li>
+              </ul>
+              <div class="chips"><span class="chip">2&ndash;3 ore</span><span class="chip cost">&euro;&euro; &middot; moderato</span></div>
+            </div>
+
+            <p class="phase">Pomeriggio &middot; sezione naturale</p>
+            <div class="stop">
+              <h3>Zoo di Bratislava &mdash; Zoologick&aacute; z&aacute;hrada</h3>
+              <ul>
+                <li>Adatto a tutte le et&agrave;: animali europei ed esotici</li>
+                <li>Bar e aree picnic all&rsquo;interno del parco</li>
+                <li>I bambini si divertono, gli adulti si rilassano</li>
+              </ul>
+              <div class="chips"><span class="chip">2&ndash;3 ore</span><span class="chip cost">&euro; &middot; economico</span></div>
+            </div>
+
+            <p class="phase">Sera &middot; cultura leggera + cena</p>
+            <div class="stop">
+              <h3>Teatro dell&rsquo;Opera o passeggiata d&rsquo;arte</h3>
+              <ul>
+                <li>Serata al Teatro dell&rsquo;Opera (verificare il programma)</li>
+                <li>In alternativa, arte moderna alla <strong>Danubiana Meulensteen Art Museum</strong></li>
+                <li>Cena a <strong>Hviezdoslavovo n&aacute;mestie</strong> &mdash; ambiente vivace, ristoranti per tutti i gusti</li>
+              </ul>
+              <div class="chips"><span class="chip">serata</span></div>
+            </div>
+          </div>
+
+          <!-- DOMENICA -->
+          <div class="day">
+            <span class="day-label">Domenica</span>
+            <h2 class="day-title">Cultura, terme e saluti</h2>
+
+            <p class="phase">Mattina &middot; sezione culturale</p>
+            <div class="stop">
+              <h3>Museo Nazionale Slovacco o Pinacoteca Slovacca</h3>
+              <ul>
+                <li>Arte, storia e cultura accessibili</li>
+                <li>Sezioni didattiche per i bambini</li>
+                <li>Alternativa: <strong>Museo Ebraico e Sinagoga</strong> &mdash; compatto e interessante per tutti</li>
+              </ul>
+              <div class="chips"><span class="chip">1&ndash;2 ore</span></div>
+            </div>
+
+            <p class="phase">Pomeriggio &middot; sezione terme (opzione A o B)</p>
+            <div class="stop">
+              <h3>Opzione A &mdash; in citt&agrave;: Aquapark Slovensk&yacute; svet</h3>
+              <ul>
+                <li>Piscine termali a ~20 min in auto da Bratislava</li>
+                <li>Vasche calde, scivoli per bambini, area relax per adulti</li>
+                <li>Prezzi ragionevoli</li>
+              </ul>
+              <div class="chips"><span class="chip">3&ndash;4 ore</span></div>
+            </div>
+            <div class="stop">
+              <h3>Opzione B &mdash; escursione termale: Pie&#353;&#357;any</h3>
+              <ul>
+                <li>A ~30 min da Bratislava, cure termali pi&ugrave; autentiche</li>
+                <li>Terme con piscine coperte e scoperte, parco termale storico</li>
+                <li>Se avete tempo, conviene questa pi&ugrave; dell&rsquo;Aquapark</li>
+              </ul>
+              <div class="chips"><span class="chip">mezza giornata</span></div>
+            </div>
+            <div class="stop">
+              <h3>Alternativa pomeriggio &mdash; sezione naturale</h3>
+              <ul>
+                <li><strong>Danubiana Meulensteen Art Museum</strong>: museo contemporaneo immerso nel verde</li>
+                <li>Passeggiata lungo il Danubio</li>
+              </ul>
+              <div class="chips"><span class="chip">2&ndash;3 ore</span></div>
+            </div>
+
+            <p class="phase">Sera finale &middot; locali per adulti (con babysitter)</p>
+            <div class="stop accent">
+              <h3>In giro per adulti</h3>
+              <ul>
+                <li>Chi ha bambini piccoli rientra in hotel</li>
+                <li><strong>Ruin Bar Beblav&yacute;</strong> &mdash; bar alternativo, musica, atmosfera giovane</li>
+                <li><strong>Apotek&aacute;re&#328;</strong> &mdash; cocktail bar raffinato nel centro storico</li>
+                <li><strong>Caf&eacute; Leberfinger</strong> &mdash; lounge bar sofisticato</li>
+                <li>Per chi resta con i bimbi: wine bar accoglienti tipo <strong>Vinila</strong> o &laquo;Vino con Letizia&raquo;</li>
+              </ul>
+              <div class="chips"><span class="chip">serata</span></div>
+            </div>
+          </div>
+
+        </div><!-- /timeline -->
+
+        <div class="note-card">
+          <h3>Posti per stare tutti insieme</h3>
+          <ul>
+            <li><strong>Danubiana Promenade</strong> &mdash; passeggiata lungo il fiume con bar, cibo e vista</li>
+            <li><strong>Hlavn&eacute; n&aacute;mestie</strong> &mdash; la piazza principale, caff&egrave; ovunque</li>
+            <li><strong>Old Town</strong> &mdash; ristorantini accoglienti per le famiglie</li>
+            <li>Ristoranti consigliati: <strong>Barocco</strong> (tradizionale, bambini benvenuti), <strong>Le Monde</strong> (francese, raffinato ma permissivo)</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <h3>Consigli pratici</h3>
+          <ul>
+            <li>A piedi nel centro; autobus o taxi per la periferia</li>
+            <li><strong>Bratislava Card</strong>: sconto sui musei</li>
+            <li>I bambini mangiano bene ovunque (piatti semplici sempre disponibili)</li>
+            <li>Fuso orario: CET (come l&rsquo;Italia in inverno, &minus;1 in estate)</li>
+            <li>Moneta: EUR</li>
+          </ul>
+        </div>
+
+        <p class="bon-voyage">Buon viaggio!</p>
+
+      </div>
+    </section>
+
+    <!-- ================= RIGHT: SEZIONI A FISARMONICA ================= -->
+    <section class="pane" aria-label="Approfondimenti per et&agrave; e interessi">
+      <div class="pane-inner">
+
+        <!-- ---- PER I PIU PICCOLI ---- -->
+        <details class="macro kids">
+          <summary class="macro-head">
+            <div>
+              <h2>Per i pi&ugrave; piccoli</h2>
+              <span class="sub">Attivit&agrave; per bambini &middot; 3&ndash;11 anni</span>
+            </div>
+            <span class="macro-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="macro-body">
+
+          <details class="acc">
+            <summary>Top attivit&agrave; <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Zoo di Bratislava &mdash; Zoologick&aacute; z&aacute;hrada</h4>
+                <p>Animali europei ed esotici, prati aperti per correre, bar dentro il parco. Meglio al mattino.</p>
+                <div class="chips"><span class="chip">2&ndash;3 ore</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+              <div class="item">
+                <h4>Castello di Bratislava &mdash; Bratislavsk&yacute; hrad</h4>
+                <p>Fortezza grande da esplorare, prati e spazi aperti, museo non troppo noioso, bella vista dall&rsquo;alto.</p>
+                <div class="chips"><span class="chip">~2 ore</span></div>
+              </div>
+              <div class="item">
+                <h4>Aquapark / Terme</h4>
+                <p>Pie&#353;&#357;any o Aquapark Slovensk&yacute; svet: scivoli, piscine per bambini, acqua calda termale.</p>
+                <div class="chips"><span class="chip">pomeriggio intero</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Musei kid-friendly <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Museo della Farmacia &mdash; Apotek&aacute;rske m&uacute;zeum</h4>
+                <p>Interattivo, piccolo, non stancante. Piace ai bambini.</p>
+                <div class="chips"><span class="chip">45 min &ndash; 1 ora</span></div>
+              </div>
+              <div class="item">
+                <h4>Museo Nazionale Slovacco &mdash; sezione bambini</h4>
+                <p>Didattico, con giochi. Non &egrave; un museo noioso.</p>
+                <div class="chips"><span class="chip">~1 ora</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Parchi e spazi aperti <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Medick&aacute; z&aacute;hrada &mdash; orto botanico</h4>
+                <p>Parco grande, prati, laghetto, passeggiate facili.</p>
+                <div class="chips"><span class="chip">1&ndash;2 ore</span></div>
+              </div>
+              <div class="item">
+                <h4>Danubiana Promenade</h4>
+                <p>Passeggiata lungofiume, bar e panchine. Facile per tutti.</p>
+              </div>
+              <div class="item">
+                <h4>Old Town &mdash; Star&aacute; Mestnos&#357;</h4>
+                <p>Stradine da girare, piazzette con fontane, bar con i seggiolini.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Attivit&agrave; varie <span class="mk"></span></summary>
+            <div class="acc-body">
+              <ul class="plain">
+                <li><strong>Visite guidate in tram</strong> &mdash; giro turistico, i bambini adorano i tram</li>
+                <li><strong>Funivia sul Danubio</strong> &mdash; se in funzione, un&rsquo;avventura divertente</li>
+                <li><strong>Boat tour sul Danubio</strong> &mdash; 1&ndash;2 ore, rilassante per tutti</li>
+                <li><strong>Cinema</strong> &mdash; cercare film doppiati in inglese (i sottotitoli non li seguono)</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Dove mangiare con i bambini <span class="mk"></span></summary>
+            <div class="acc-body">
+              <ul class="plain">
+                <li><strong>Barocco</strong> &mdash; ristorante tradizionale slovacco, piatti semplici</li>
+                <li><strong>McDonald&rsquo;s / Burger King</strong> &mdash; ovunque, se serve</li>
+                <li><strong>Caffetterie nelle piazze</strong> &mdash; patatine, panini, cose semplici</li>
+                <li><strong>Gelato</strong> &mdash; gelaterie ovunque, bambini felici</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Consigli pratici <span class="mk"></span></summary>
+            <div class="acc-body">
+              <ul class="plain">
+                <li>Scarpe comode: si cammina molto</li>
+                <li>Snack e merenda in borsa</li>
+                <li>WC pubblici nei musei e nei locali</li>
+                <li>Citt&agrave; compatta, facile da girare</li>
+                <li>Cibo semplice apprezzato: pizza, pasta, polpette</li>
+              </ul>
+              <p class="tip"><strong>Giorno migliore per i bambini:</strong> sabato (Zoo + Castello). <strong>Secondo giorno:</strong> domenica pomeriggio (terme / aquapark).</p>
+            </div>
+          </details>
+          </div><!-- /macro-body -->
+        </details>
+
+        <!-- ---- PER I PIU COLTI ---- -->
+        <details class="macro">
+          <summary class="macro-head">
+            <div>
+              <h2>Per i pi&ugrave; colti</h2>
+              <span class="sub">Attrazioni culturali di Bratislava</span>
+            </div>
+            <span class="macro-mk" aria-hidden="true"></span>
+          </summary>
+          <div class="macro-body">
+
+          <details class="acc">
+            <summary>Musei principali <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Museo Nazionale Slovacco &mdash; Slovensk&eacute; n&aacute;rodn&eacute; m&uacute;zeum</h4>
+                <p>Arte, storia naturale e archeologia slovacca in un edificio storico importante.</p>
+                <div class="chips"><span class="chip">2&ndash;3 ore</span><span class="chip cost">&euro;&euro; &middot; moderato</span></div>
+              </div>
+              <div class="item">
+                <h4>Pinacoteca Slovacca &mdash; Slovensk&aacute; n&aacute;rodn&aacute; gal&eacute;ria</h4>
+                <p>Arte slovacca dal Medioevo a oggi, in un palazzo barocco.</p>
+                <div class="chips"><span class="chip">1,5&ndash;2 ore</span><span class="chip cost">&euro;&euro; &middot; moderato</span></div>
+              </div>
+              <div class="item">
+                <h4>Museo della Farmacia &mdash; Apotek&aacute;rske m&uacute;zeum</h4>
+                <p>Unico in Europa Centrale: farmacia storica, ricette e medicamenti antichi. Affascina anche i pi&ugrave; giovani.</p>
+                <div class="chips"><span class="chip">~45 min</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+              <div class="item">
+                <h4>Museo Ebraico e Sinagoga Ortodossa</h4>
+                <p>Storia ebraica slovacca, sinagoga del 1896.</p>
+                <div class="chips"><span class="chip">~1 ora</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+              <div class="item">
+                <h4>Museo della Citt&agrave; di Bratislava</h4>
+                <p>Storia medievale e moderna: documenti e oggetti nel municipio vecchio.</p>
+                <div class="chips"><span class="chip">1&ndash;2 ore</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Chiese e siti storici <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Cattedrale di San Martino &mdash; Kostol sv. Martina</h4>
+                <p>Gotica, XV secolo: qui venivano incoronati i re d&rsquo;Ungheria.</p>
+                <div class="chips"><span class="chip">~30 min</span><span class="chip cost">Gratis (donazione)</span></div>
+              </div>
+              <div class="item">
+                <h4>Chiesa Blu &mdash; Kostol sv. Al&#382;bety</h4>
+                <p>Art Nouveau, interamente azzurra. Foto perfette.</p>
+                <div class="chips"><span class="chip">~15 min</span><span class="chip cost">Gratis</span></div>
+              </div>
+              <div class="item">
+                <h4>Chiesa Francescana &mdash; Kostol sv. Franti&#353;ka</h4>
+                <p>Barocca, 1656: qui Mozart suon&ograve; l&rsquo;organo.</p>
+                <div class="chips"><span class="chip">~20 min</span><span class="chip cost">Gratis</span></div>
+              </div>
+              <div class="item">
+                <h4>Eremo dei Camaldoli</h4>
+                <p>Eremo nel bosco, pacifico.</p>
+                <div class="chips"><span class="chip">~30 min</span><span class="chip cost">Gratis</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Castelli e fortezze <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Castello di Bratislava &mdash; Bratislavsk&yacute; hrad</h4>
+                <p>Simbolo della citt&agrave;, ricostruito negli anni &rsquo;50. Museo storico e viste panoramiche sul Danubio; prati e spazi aperti.</p>
+                <div class="chips"><span class="chip">2&ndash;3 ore</span><span class="chip cost">&euro;&euro; &middot; moderato</span></div>
+              </div>
+              <div class="item">
+                <h4>Castello di Dev&iacute;n &mdash; Dev&iacute;nsky hrad</h4>
+                <p>Rovine medievali suggestive a 15 km, panorama su Danubio e Austria. Escursione consigliata.</p>
+                <div class="chips"><span class="chip">2&ndash;3 ore (con tragitto)</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Musei tematici <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Museo della Guerra</h4>
+                <p>Storia della Seconda guerra mondiale in Slovacchia.</p>
+                <div class="chips"><span class="chip">1&ndash;2 ore</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+              <div class="item">
+                <h4>Museo Antropologico</h4>
+                <p>Etnografia slovacca e costumi tradizionali. Affascinante per chi ama l&rsquo;antropologia.</p>
+                <div class="chips"><span class="chip">~1 ora</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+              <div class="item">
+                <h4>Museo dei Giocattoli Antichi</h4>
+                <p>Giocattoli storici (verificare se aperto). Piace ai bambini pi&ugrave; grandi.</p>
+                <div class="chips"><span class="chip">~1 ora</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Arte contemporanea e gallerie <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Danubiana Meulensteen Art Museum</h4>
+                <p>Arte moderna e contemporanea internazionale, architettura interessante e giardino bellissimo, a 5 km dalla citt&agrave;.</p>
+                <div class="chips"><span class="chip">2&ndash;3 ore</span><span class="chip cost">&euro;&euro; &middot; moderato</span></div>
+              </div>
+              <div class="item">
+                <h4>Galleria Med&uacute;za</h4>
+                <p>Arte contemporanea slovacca.</p>
+              </div>
+              <div class="item">
+                <h4>Gal&eacute;ria Nedbalka</h4>
+                <p>Collezione privata di arte moderna.</p>
+              </div>
+              <div class="item">
+                <h4>Kunsthalle</h4>
+                <p>Spazio per mostre temporanee.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Siti storici e piazze <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Old Town &mdash; Star&aacute; Mestnos&#357;</h4>
+                <p>Nucleo medievale attorno a Hlavn&eacute; n&aacute;mestie, architettura barocca restaurata.</p>
+                <div class="chips"><span class="chip">1&ndash;2 ore</span><span class="chip cost">Gratis</span></div>
+              </div>
+              <div class="item">
+                <h4>Hviezdoslavovo n&aacute;mestie</h4>
+                <p>Piazza storica con teatro e musei attorno. Bella per una passeggiata.</p>
+                <div class="chips"><span class="chip cost">Gratis</span></div>
+              </div>
+              <div class="item">
+                <h4>Palazzo dell&rsquo;Arcivescovo</h4>
+                <p>Barocco magnifico, bello anche solo da fuori.</p>
+                <div class="chips"><span class="chip">~10 min</span><span class="chip cost">Gratis</span></div>
+              </div>
+              <div class="item">
+                <h4>Palazzo Primaziale &mdash; Primaci&aacute;lny pal&aacute;c</h4>
+                <p>Barocco, 1778: qui fu firmata la Pace di Presburgo nel 1805. Bello dentro e fuori.</p>
+                <div class="chips"><span class="chip">~30 min</span><span class="chip cost">&euro; &middot; economico</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Teatri e spettacoli <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Teatro Nazionale Slovacco &mdash; Slovensk&eacute; n&aacute;rodn&eacute; divadlo</h4>
+                <p>Opera, balletto e prosa in un bellissimo edificio storico. Verificare il programma.</p>
+                <div class="chips"><span class="chip cost">&euro; &middot; variabile</span></div>
+              </div>
+              <div class="item">
+                <h4>Teatro Astorka</h4>
+                <p>Teatro alternativo e sperimentale.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Passeggiate culturali <span class="mk"></span></summary>
+            <div class="acc-body">
+              <div class="item">
+                <h4>Danubiana Promenade</h4>
+                <p>Lungofiume con arte e sculture.</p>
+                <div class="chips"><span class="chip">1&ndash;2 ore</span><span class="chip cost">Gratis</span></div>
+              </div>
+              <div class="item">
+                <h4>Memento Park</h4>
+                <p>Monumento alla memoria, luogo tranquillo.</p>
+                <div class="chips"><span class="chip">~30 min</span><span class="chip cost">Gratis</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Se piove <span class="mk"></span></summary>
+            <div class="acc-body">
+              <ul class="plain">
+                <li>Musei (quasi tutti al coperto)</li>
+                <li>Cinema con film in inglese</li>
+                <li>Teatro / opera</li>
+                <li>Aquapark coperto</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Itinerario culturale consigliato <span class="mk"></span></summary>
+            <div class="acc-body">
+              <ul class="plain">
+                <li><span class="k">Sabato mattina &mdash;</span> Castello + Cattedrale di San Martino + passeggiata in Old Town</li>
+                <li><span class="k">Sabato pomeriggio &mdash;</span> Museo Nazionale o Pinacoteca Slovacca</li>
+                <li><span class="k">Domenica mattina &mdash;</span> Museo della Farmacia + Chiesa Blu + Danubiana Promenade</li>
+                <li><span class="k">Extra &mdash;</span> Castello di Dev&iacute;n, se avete tempo</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Consigli <span class="mk"></span></summary>
+            <div class="acc-body">
+              <ul class="plain">
+                <li><strong>Bratislava Card</strong>: sconto su molti musei</li>
+                <li>Luned&igrave; molti musei chiusi &mdash; verificare</li>
+                <li>Luned&igrave; mattina: ingresso gratuito in alcuni musei</li>
+                <li>Inglese ben parlato nei musei principali</li>
+                <li>Orari tipici 10:00&ndash;17:00</li>
+                <li>Audioguide disponibili nei musei grandi</li>
+              </ul>
+            </div>
+          </details>
+          </div><!-- /macro-body -->
+        </details>
+
+      </div>
+    </section>
+
+  </div><!-- /panes -->
+</div><!-- /shell -->
+
+<script>
+  // Schede (solo mobile): Itinerario + una per ogni sezione, bottoni in alto
+  (function(){
+    var panes = document.querySelector('.panes');
+    var tabbar = document.querySelector('.tabbar');
+    if (!panes || !tabbar) return;
+    var btns = tabbar.querySelectorAll('.tab-btn');
+    var mq = window.matchMedia('(max-width:920px)');
+
+    function setTab(name){
+      panes.setAttribute('data-tab', name);
+      btns.forEach(function(b){
+        var on = b.dataset.tab === name;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+    // mobile: le sezioni-scheda sono sempre espanse; desktop: sempre collassate
+    function syncMacros(){
+      document.querySelectorAll('.macro').forEach(function(m){ m.open = mq.matches; });
+    }
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){ setTab(b.dataset.tab); });
+    });
+    // su mobile un tap sull'intestazione non richiude la scheda
+    document.querySelectorAll('.macro > summary').forEach(function(s){
+      s.addEventListener('click', function(e){ if (mq.matches) e.preventDefault(); });
+    });
+    if (mq.addEventListener) mq.addEventListener('change', syncMacros);
+    else if (mq.addListener) mq.addListener(syncMacros);
+    syncMacros();
+    setTab('itinerario');
+  })();
+</script>
+</body>
+</html>
